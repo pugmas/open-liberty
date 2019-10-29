@@ -18,7 +18,6 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 import org.junit.Assert;
-import org.junit.Assume;
 
 import com.ibm.ws.jpa.fvt.jpa20.entitymanager.model.Employee;
 import com.ibm.ws.testtooling.testinfo.JPAPersistenceContext.PersistenceContextType;
@@ -72,8 +71,10 @@ public class EntityManagerUnwrapTestLogic extends AbstractTestLogic {
         final String dbProductVersion = (testProps == null) ? "UNKNOWN" : ((testProps.get("dbProductVersion") == null) ? "UNKNOWN" : (String) testProps.get("dbProductVersion"));
         final String jdbcDriverVersion = (testProps == null) ? "UNKNOWN" : ((testProps.get("jdbcDriverVersion") == null) ? "UNKNOWN" : (String) testProps.get("jdbcDriverVersion"));
 
-        // Check that this test is supported on the given database
-        Assume.assumeTrue(isSupportedDatabase(dbProductName, dbProductVersion, jdbcDriverVersion));
+        if (isSupportedDatabase(dbProductName, dbProductVersion, jdbcDriverVersion) == false) {
+            // This test does not currently support the target database vendor.
+            return;
+        }
 
         final String lDbProductName = dbProductName.toLowerCase();
         final boolean isAMJTA = PersistenceContextType.APPLICATION_MANAGED_JTA == jpaResource.getPcCtxInfo().getPcType();
@@ -162,8 +163,17 @@ public class EntityManagerUnwrapTestLogic extends AbstractTestLogic {
         final String dbProductVersion = (testProps == null) ? "UNKNOWN" : ((testProps.get("dbProductVersion") == null) ? "UNKNOWN" : (String) testProps.get("dbProductVersion"));
         final String jdbcDriverVersion = (testProps == null) ? "UNKNOWN" : ((testProps.get("jdbcDriverVersion") == null) ? "UNKNOWN" : (String) testProps.get("jdbcDriverVersion"));
 
-        // Check that this test is supported on the given database
-        Assume.assumeTrue(isSupportedDatabase(dbProductName, dbProductVersion, jdbcDriverVersion));
+        if (isSupportedDatabase(dbProductName, dbProductVersion, jdbcDriverVersion) == false) {
+            // This test does not currently support the target database vendor.
+            return;
+        }
+
+        // TODO: Skip this test until the Eclipselink 2.7 shipped with Open Liberty has been updated to include this fix
+        // Eclipselink Bug 547173
+        if (isUsingJPA22Feature()) {
+            System.out.println("Detected that the active feature is JPA 2.2, skipping this test until fix is integrated.");
+            return;
+        }
 
         final String lDbProductName = dbProductName.toLowerCase();
         final boolean isAMJTA = PersistenceContextType.APPLICATION_MANAGED_JTA == jpaResource.getPcCtxInfo().getPcType();
@@ -245,8 +255,10 @@ public class EntityManagerUnwrapTestLogic extends AbstractTestLogic {
         final String dbProductVersion = (testProps == null) ? "UNKNOWN" : ((testProps.get("dbProductVersion") == null) ? "UNKNOWN" : (String) testProps.get("dbProductVersion"));
         final String jdbcDriverVersion = (testProps == null) ? "UNKNOWN" : ((testProps.get("jdbcDriverVersion") == null) ? "UNKNOWN" : (String) testProps.get("jdbcDriverVersion"));
 
-        // Check that this test is supported on the given database
-        Assume.assumeTrue(isSupportedDatabase(dbProductName, dbProductVersion, jdbcDriverVersion));
+        if (isSupportedDatabase(dbProductName, dbProductVersion, jdbcDriverVersion) == false) {
+            // This test does not currently support the target database vendor.
+            return;
+        }
 
         final String lDbProductName = dbProductName.toLowerCase();
         final boolean isAMJTA = PersistenceContextType.APPLICATION_MANAGED_JTA == jpaResource.getPcCtxInfo().getPcType();

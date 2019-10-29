@@ -18,7 +18,6 @@ src: \
 	fat/src,\
 	test-applications/helpers/DatabaseManagement/src,\
 	test-applications/example/src,\
-    test-applications/olgh8820/src,\
 	test-framework/src
 
 fat.project: true

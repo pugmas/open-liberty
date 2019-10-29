@@ -1,1 +1,0 @@
-DROP TABLE ${schemaname}.SimpleOLGH9339;

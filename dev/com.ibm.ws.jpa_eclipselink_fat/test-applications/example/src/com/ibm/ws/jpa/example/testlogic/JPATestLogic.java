@@ -70,7 +70,7 @@ public class JPATestLogic extends AbstractTestLogic {
             EntityManager em = jpaResource.getEm();
             TransactionJacket tj = jpaResource.getTj();
 
-        } catch (java.lang.AssertionError /* | org.junit.internal.AssumptionViolatedException */ ae) {
+        } catch (java.lang.AssertionError ae) {
             throw ae;
         } catch (Throwable t) {
             // Catch any Exceptions thrown by the test case for proper error logging.

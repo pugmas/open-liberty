@@ -81,7 +81,7 @@ public class BMTEJBTestVehicle implements EJBTestVehicle {
 
             // Execute the test
             JEEExecutionContextHelper.executeTestLogic(ctx, testExecResources, this);
-        } catch (java.lang.AssertionError /* | org.junit.internal.AssumptionViolatedException */ ae) {
+        } catch (java.lang.AssertionError ae) {
             throw ae;
         } catch (Throwable t) {
             Assert.fail("BMTEJBTestVehicle Caught Exception: " + t);
