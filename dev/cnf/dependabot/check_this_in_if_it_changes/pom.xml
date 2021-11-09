@@ -2459,7 +2459,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-core-spi</artifactId>
-      <version>4.7.0.Final</version>
+      <version>5.0.0.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
