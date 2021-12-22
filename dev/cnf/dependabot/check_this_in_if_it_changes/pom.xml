@@ -1944,7 +1944,7 @@
     <dependency>
       <groupId>org.eclipse.microprofile.lra</groupId>
       <artifactId>microprofile-lra-api</artifactId>
-      <version>1.0-M2</version>
+      <version>2.0-RC1</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.microprofile.metrics</groupId>
